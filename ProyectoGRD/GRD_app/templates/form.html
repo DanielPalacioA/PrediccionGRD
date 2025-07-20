@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción GRD</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <!-- Edad -->
+        <input type="number" name="edad" placeholder="Edad" required>
+
+        <!-- Sexo -->
+        <select name="sexo" required>
+            <option value="" disabled selected>Sexo</option>
+            <option value="f">Femenino</option>
+            <option value="m">Masculino</option>
+        </select>
+
+        <!-- Días de estancia -->
+        <input type="number" name="dias_estancia" placeholder="Días de estancia" required>
+
+        <!-- Diagnóstico principal de egreso .1 -->
+        <input type="text" name="dx_principal_1" placeholder="Dx principal de egreso .1" required>
+
+        <!-- Diagnósticos relacionados -->
+        <input type="text" name="dxr1" placeholder="Dxr 1">
+        <input type="text" name="dxr2" placeholder="Dxr 2">
+        <input type="text" name="dxr3" placeholder="Dxr 3">
+        <input type="text" name="dxr4" placeholder="Dxr 4">
+        <input type="text" name="dxr5" placeholder="Dxr 5">
+        <input type="text" name="dxr6" placeholder="Dxr 6">
+
+        <!-- Servicio de alta -->
+        <input type="text" name="servicio_alta" placeholder="Servicio de alta">
+
+        <!-- Procedimiento 1 -->
+        <input type="text" name="proc1" placeholder="Procedimiento 1">
+
+        <!-- Tipo de ingreso -->
+        <input type="text" name="tipo_ingreso" placeholder="Tipo de ingreso">
+
+        <button type="submit">Predecir</button>
+    </form>
+</body>
+</html>
