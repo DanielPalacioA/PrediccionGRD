@@ -4,45 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predicción GRD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/f/fb/Escudo-UdeA.svg') center center fixed;
+            background-size: contain;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.6);   
+        }
+        h2 {
+            color: #026937;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            margin-bottom: 15px;
+        }
+        .otros-title {
+            color: #026937;  /* Verde más claro para otros datos */
+        }
+        .footer-text {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #2d4a33;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
+    <div class="container">
+        <div class="form-container">
+            <h2>Formulario de Predicción GRD</h2>
+            <form action="" method="post">
+                {% csrf_token %}
 
-        <!-- Edad -->
-        <input type="number" name="edad" placeholder="Edad" required>
+                <!-- Información básica -->
+                <div class="form-section">
+                    <h5 class="otros-title">Información Básica</h5>
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" id="edad" name="edad" class="form-control" placeholder="Edad" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select id="sexo" name="sexo" class="form-select" required>
+                            <option value="" disabled selected>Seleccione</option>
+                            <option value="f">Femenino</option>
+                            <option value="m">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dias_estancia" class="form-label">Días de estancia</label>
+                        <input type="number" id="dias_estancia" name="dias_estancia" class="form-control" placeholder="Días de estancia" required>
+                    </div>
+                </div>
 
-        <!-- Sexo -->
-        <select name="sexo" required>
-            <option value="" disabled selected>Sexo</option>
-            <option value="f">Femenino</option>
-            <option value="m">Masculino</option>
-        </select>
+                <!-- Diagnósticos -->
+                <div class="form-section">
+                    <h5 class="otros-title">Diagnósticos</h5>
+                    <div class="mb-3">
+                        <label for="dx_principal_1" class="form-label">Dx principal de egreso</label>
+                        <input type="text" id="dx_principal_1" name="dx_principal_1" class="form-control" placeholder="Dx principal de egreso .1" required>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="dxr1" class="form-control" placeholder="Dxr 1"></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="dxr2" class="form-control" placeholder="Dxr 2"></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="dxr3" class="form-control" placeholder="Dxr 3"></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="dxr4" class="form-control" placeholder="Dxr 4"></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="dxr5" class="form-control" placeholder="Dxr 5"></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="dxr6" class="form-control" placeholder="Dxr 6"></div>
+                    </div>
+                </div>
 
-        <!-- Días de estancia -->
-        <input type="number" name="dias_estancia" placeholder="Días de estancia" required>
+                <!-- Otros campos -->
+                <div class="form-section">
+                    <h5 class="otros-title">Otros Datos</h5>
+                    <div class="mb-3">
+                        <label for="servicio_alta" class="form-label">Servicio de alta</label>
+                        <input type="text" id="servicio_alta" name="servicio_alta" class="form-control" placeholder="Servicio de alta">
+                    </div>
+                    <div class="mb-3">
+                        <label for="proc1" class="form-label">Procedimiento 1</label>
+                        <input type="text" id="proc1" name="proc1" class="form-control" placeholder="Procedimiento 1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_ingreso" class="form-label">Tipo de ingreso</label>
+                        <input type="text" id="tipo_ingreso" name="tipo_ingreso" class="form-control" placeholder="Tipo de ingreso">
+                    </div>
+                </div>
 
-        <!-- Diagnóstico principal de egreso .1 -->
-        <input type="text" name="dx_principal_1" placeholder="Dx principal de egreso .1" required>
-
-        <!-- Diagnósticos relacionados -->
-        <input type="text" name="dxr1" placeholder="Dxr 1">
-        <input type="text" name="dxr2" placeholder="Dxr 2">
-        <input type="text" name="dxr3" placeholder="Dxr 3">
-        <input type="text" name="dxr4" placeholder="Dxr 4">
-        <input type="text" name="dxr5" placeholder="Dxr 5">
-        <input type="text" name="dxr6" placeholder="Dxr 6">
-
-        <!-- Servicio de alta -->
-        <input type="text" name="servicio_alta" placeholder="Servicio de alta">
-
-        <!-- Procedimiento 1 -->
-        <input type="text" name="proc1" placeholder="Procedimiento 1">
-
-        <!-- Tipo de ingreso -->
-        <input type="text" name="tipo_ingreso" placeholder="Tipo de ingreso">
-
-        <button type="submit">Predecir</button>
-    </form>
+                <button type="submit" class="btn btn-success w-100">Predecir</button>
+                <p class="footer-text mb-0">Sistema de Predicción GRD • Universidad de Antioquia</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
